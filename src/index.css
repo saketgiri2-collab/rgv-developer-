@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --gold: #B89452;
+    --gold-light: #D6BD82;
+    --gold-dark: #97763B;
+    --bg-primary: #F7F4EE;
+    --bg-secondary: #EFE9DE;
+    --card-surface: #FFFFFF;
+    --text-primary: #25231F;
+    --text-secondary: #6F6A61;
+    --border-color: #DDD4C5;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F7F4EE;
+    color: #25231F;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Luxury Architectural Accents */
+.gold-gradient-text {
+  color: #B89452;
+}
+
+.gold-border {
+  border-color: #DDD4C5;
+}
+
+.gold-button {
+  background-color: #B89452;
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 0px;
+  transition: all 0.25s ease;
+}
+
+.gold-button:hover {
+  background-color: #D6BD82;
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(184, 148, 82, 0.25);
+}
+
+.dark-button {
+  background-color: #FFFFFF;
+  color: #B89452;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 1px solid #B89452;
+  border-radius: 0px;
+  transition: all 0.25s ease;
+}
+
+.dark-button:hover {
+  background-color: #F7F4EE;
+  color: #B89452;
+}
+
+.luxury-card {
+  background-color: #FFFFFF;
+  border: 1px solid #DDD4C5;
+  border-radius: 0px;
+  transition: all 0.3s ease;
+}
+
+.luxury-card:hover {
+  border-color: #B89452;
+}
+
+.geo-corner-tl {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-top: 1px solid rgba(184, 148, 82, 0.4);
+  border-left: 1px solid rgba(184, 148, 82, 0.4);
+  pointer-events: none;
+}
+
+.geo-corner-br {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-bottom: 1px solid rgba(184, 148, 82, 0.4);
+  border-right: 1px solid rgba(184, 148, 82, 0.4);
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F4EE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDD4C5;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B89452;
+}
+
+/* WhatsApp pulse */
+@keyframes goldPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: goldPulse 2.5s infinite;
+}

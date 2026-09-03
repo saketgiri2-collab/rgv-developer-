@@ -1,0 +1,6 @@
+{
+  "name": "RGV Developers",
+  "description": "Premium real estate developer website for RGV Developers featuring luxury plotted developments, project showcases, site visit booking, and investment insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
