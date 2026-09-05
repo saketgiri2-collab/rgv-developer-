@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { siteConfig } from '../config/siteConfig';
 import { 
   Phone, 
@@ -17,15 +18,6 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingModal }) => {
   const currentYear = new Date().getFullYear();
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer className="bg-[#EFE9DE] border-t border-[#DDD4C5] text-[#6F6A61] pt-16 pb-12">
@@ -69,22 +61,22 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
           
           {/* Brand & Vision (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/rgv-logo.svg"
                 alt="RGV Developers Official Logo"
                 referrerPolicy="no-referrer"
-                className="w-12 h-12 object-contain rounded-full bg-white border border-[#B89452]/40 p-0.5 shadow-xs shrink-0"
+                className="w-12 h-12 object-contain rounded-full bg-white border border-[#B89452]/40 p-0.5 shadow-xs shrink-0 group-hover:border-[#B89452] transition-colors"
               />
               <div>
-                <span className="font-display font-bold text-xl text-[#25231F] tracking-wider block leading-tight">
+                <span className="font-display font-bold text-xl text-[#25231F] tracking-wider block leading-tight group-hover:text-[#B89452] transition-colors">
                   RGV DEVELOPERS
                 </span>
                 <span className="text-[9.5px] tracking-[0.2em] text-[#B89452] uppercase font-semibold">
                   Sri Raghavendra Swamy Developers
                 </span>
               </div>
-            </div>
+            </Link>
 
             <p className="text-sm text-[#6F6A61] leading-relaxed font-normal">
               Building Spaces. Creating Futures. Premium master-planned plotted townships, gated villa communities, and high-growth real estate assets engineered for long-term appreciation.
@@ -108,16 +100,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
               Navigation
             </h4>
             <ul className="space-y-2 text-sm text-[#6F6A61]">
-              <li><a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="hover:text-[#B89452] transition-colors">Home</a></li>
-              <li><a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="hover:text-[#B89452] transition-colors">Projects</a></li>
-              <li><a href="#layout" onClick={(e) => handleNavClick(e, '#layout')} className="hover:text-[#B89452] transition-colors">Master Layout</a></li>
-              <li><a href="#brochure" onClick={(e) => handleNavClick(e, '#brochure')} className="hover:text-[#B89452] transition-colors">Project Brochure</a></li>
-              <li><a href="#investment" onClick={(e) => handleNavClick(e, '#investment')} className="hover:text-[#B89452] transition-colors">Pricing & EMI</a></li>
-              <li><a href="#amenities" onClick={(e) => handleNavClick(e, '#amenities')} className="hover:text-[#B89452] transition-colors">Amenities</a></li>
-              <li><a href="#gallery" onClick={(e) => handleNavClick(e, '#gallery')} className="hover:text-[#B89452] transition-colors">Photo Gallery</a></li>
-              <li><a href="#location" onClick={(e) => handleNavClick(e, '#location')} className="hover:text-[#B89452] transition-colors">Location & Axis</a></li>
-              <li><a href="#why-us" onClick={(e) => handleNavClick(e, '#why-us')} className="hover:text-[#B89452] transition-colors">Why RGV</a></li>
-              <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-[#B89452] transition-colors">About Us</a></li>
+              <li><Link to="/" className="hover:text-[#B89452] transition-colors">Home</Link></li>
+              <li><Link to="/projects" className="hover:text-[#B89452] transition-colors">Projects</Link></li>
+              <li><Link to="/layout" className="hover:text-[#B89452] transition-colors">Master Layout</Link></li>
+              <li><Link to="/brochure" className="hover:text-[#B89452] transition-colors">Project Brochure</Link></li>
+              <li><Link to="/pricing" className="hover:text-[#B89452] transition-colors">Pricing & EMI</Link></li>
+              <li><Link to="/amenities" className="hover:text-[#B89452] transition-colors">Amenities</Link></li>
+              <li><Link to="/location" className="hover:text-[#B89452] transition-colors">Location & Axis</Link></li>
+              <li><Link to="/gallery" className="hover:text-[#B89452] transition-colors">Photo Gallery</Link></li>
+              <li><Link to="/why-rgv" className="hover:text-[#B89452] transition-colors">Why RGV</Link></li>
+              <li><Link to="/about" className="hover:text-[#B89452] transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="hover:text-[#B89452] transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -128,17 +121,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
             </h4>
             <div className="space-y-3 text-xs">
               <div className="p-3 bg-white border border-[#DDD4C5] shadow-xs">
-                <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="font-bold text-sm text-[#25231F] hover:text-[#B89452] block">
+                <Link to="/projects" className="font-bold text-sm text-[#25231F] hover:text-[#B89452] block">
                   New City North
-                </a>
+                </Link>
                 <span className="text-[#6F6A61] block text-[11px]">Near Rajankunte, Yelahanka Taluk</span>
                 <span className="text-[#B89452] font-bold block mt-1">₹1,799 / sq.ft. • BMRDA Approval Awaited</span>
               </div>
 
               <div className="p-3 bg-white border border-[#DDD4C5] shadow-xs">
-                <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="font-bold text-sm text-[#25231F] hover:text-[#B89452] block">
+                <Link to="/projects" className="font-bold text-sm text-[#25231F] hover:text-[#B89452] block">
                   New City
-                </a>
+                </Link>
                 <span className="text-[#6F6A61] block text-[11px]">Doddaballapura Highway Corridor</span>
                 <span className="text-[#B89452] font-bold block mt-1">₹1,199 / sq.ft. • DPA (Doddaballapura)</span>
               </div>
@@ -205,8 +198,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
                 Member / Investor Portal Login
               </button>
             )}
-            <a href="#visit" onClick={(e) => handleNavClick(e, '#visit')} className="hover:text-[#B89452]">Schedule Visit</a>
-            <a href="#why-us" onClick={(e) => handleNavClick(e, '#why-us')} className="hover:text-[#B89452]">Trust & Compliance</a>
+            <Link to="/contact" className="hover:text-[#B89452]">Schedule Visit</Link>
+            <Link to="/why-rgv" className="hover:text-[#B89452]">Trust & Compliance</Link>
           </div>
         </div>
       </div>

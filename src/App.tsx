@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Project } from './types';
+import { ScrollToTop } from './components/ScrollToTop';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Highlights } from './components/Highlights';
-import { FeaturedProject } from './components/FeaturedProject';
-import { ProjectsSection } from './components/ProjectsSection';
-import { PriceInvestment } from './components/PriceInvestment';
-import { Amenities } from './components/Amenities';
-import { LayoutSection } from './components/LayoutSection';
-import { BrochureSection } from './components/BrochureSection';
-import { LocationSection } from './components/LocationSection';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { ProjectGallery } from './components/ProjectGallery';
-import { LifestyleSection } from './components/LifestyleSection';
-import { BrandIntro } from './components/BrandIntro';
-import { SiteVisitForm } from './components/SiteVisitForm';
-import { LeadCTA } from './components/LeadCTA';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { QuickCallBar } from './components/QuickCallBar';
 import { LeadModal } from './components/LeadModal';
 import { LoginModal } from './components/LoginModal';
 import { ProjectDetailsModal } from './components/ProjectDetailsModal';
+
+// Dedicated Page Views
+import { HomePage } from './pages/HomePage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { LayoutPage } from './pages/LayoutPage';
+import { BrochurePage } from './pages/BrochurePage';
+import { PricingPage } from './pages/PricingPage';
+import { AmenitiesPage } from './pages/AmenitiesPage';
+import { LocationPage } from './pages/LocationPage';
+import { GalleryPage } from './pages/GalleryPage';
+import { WhyRgvPage } from './pages/WhyRgvPage';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
@@ -36,116 +36,132 @@ export default function App() {
     setIsBookingModalOpen(true);
   };
 
-  const handleScrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const handleViewProjectDetails = (project: Project) => {
     setSelectedProjectForModal(project);
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white">
-      {/* Navigation */}
-      <Navbar
-        onOpenBookingModal={handleOpenBookingModal}
-        onOpenLoginModal={() => setIsLoginModalOpen(true)}
-      />
+    <BrowserRouter>
+      <div className="min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white flex flex-col justify-between">
+        {/* Scroll To Top on Route Change */}
+        <ScrollToTop />
 
-      {/* Main Content Sections */}
-      <main>
-        {/* 1. Hero Section */}
-        <Hero
+        {/* Global Navigation Bar */}
+        <Navbar
+          onOpenBookingModal={handleOpenBookingModal}
+          onOpenLoginModal={() => setIsLoginModalOpen(true)}
+        />
+
+        {/* Dedicated Route Routing */}
+        <main className="grow">
+          <Routes>
+            {/* 1. HOME → / */}
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  onOpenBookingModal={handleOpenBookingModal}
+                  onViewProjectDetails={handleViewProjectDetails}
+                />
+              }
+            />
+
+            {/* 2. PROJECTS → /projects */}
+            <Route
+              path="/projects"
+              element={
+                <ProjectsPage
+                  onOpenBookingModal={handleOpenBookingModal}
+                  onViewProjectDetails={handleViewProjectDetails}
+                />
+              }
+            />
+
+            {/* 3. LAYOUT → /layout */}
+            <Route
+              path="/layout"
+              element={<LayoutPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* 4. BROCHURE → /brochure */}
+            <Route
+              path="/brochure"
+              element={<BrochurePage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* 5. PRICING → /pricing */}
+            <Route
+              path="/pricing"
+              element={<PricingPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* 6. AMENITIES → /amenities */}
+            <Route
+              path="/amenities"
+              element={<AmenitiesPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* 7. LOCATION → /location */}
+            <Route path="/location" element={<LocationPage />} />
+
+            {/* 8. GALLERY → /gallery */}
+            <Route path="/gallery" element={<GalleryPage />} />
+
+            {/* 9. WHY RGV → /why-rgv */}
+            <Route
+              path="/why-rgv"
+              element={<WhyRgvPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* 10. ABOUT US → /about */}
+            <Route
+              path="/about"
+              element={<AboutPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+            <Route path="/about-us" element={<Navigate to="/about" replace />} />
+
+            {/* 11. CONTACT → /contact */}
+            <Route
+              path="/contact"
+              element={<ContactPage onOpenBookingModal={handleOpenBookingModal} />}
+            />
+
+            {/* Catch-all fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+
+        {/* Global Corporate Footer */}
+        <Footer
+          onOpenLoginModal={() => setIsLoginModalOpen(true)}
           onOpenBookingModal={() => handleOpenBookingModal()}
-          onExploreProjects={handleScrollToProjects}
         />
 
-        {/* 2. Key Metrics & Highlights */}
-        <Highlights />
+        {/* Floating Instant Communication Widgets */}
+        <WhatsAppButton />
+        <QuickCallBar onOpenBookingModal={() => handleOpenBookingModal()} />
 
-        {/* 3. Featured Flagship Project */}
-        <FeaturedProject
-          onOpenBookingModal={handleOpenBookingModal}
-          onViewProjectDetails={handleViewProjectDetails}
+        {/* Global Interactive Modals */}
+        <LeadModal
+          isOpen={isBookingModalOpen}
+          onClose={() => setIsBookingModalOpen(false)}
+          initialProject={bookingModalProject}
+          isBrochureMode={isBrochureModal}
         />
 
-        {/* 4. Complete Townships & Projects Directory */}
-        <ProjectsSection
-          onOpenBookingModal={handleOpenBookingModal}
-          onViewProjectDetails={handleViewProjectDetails}
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
         />
 
-        {/* 5. Pricing & Investment Calculator */}
-        <PriceInvestment onOpenBookingModal={handleOpenBookingModal} />
-
-        {/* 6. World-Class Amenities */}
-        <Amenities onOpenBookingModal={() => handleOpenBookingModal()} />
-
-        {/* 7. Interactive Master Layout Blueprint */}
-        <LayoutSection onOpenBookingModal={handleOpenBookingModal} />
-
-        {/* 8. Interactive Multi-Page Brochure Viewer */}
-        <BrochureSection onOpenBookingModal={handleOpenBookingModal} />
-
-        {/* 9. Strategic Connectivity & Location Map */}
-        <LocationSection />
-
-        {/* 10. Why Choose RGV Developers (Trust Factors) */}
-        <WhyChooseUs onOpenBookingModal={() => handleOpenBookingModal()} />
-
-        {/* 11. High-Resolution Project Photo Gallery */}
-        <ProjectGallery />
-
-        {/* 12. Gated Community Lifestyle Experience */}
-        <LifestyleSection onOpenBookingModal={() => handleOpenBookingModal()} />
-
-        {/* 13. Brand Legacy & Company Background */}
-        <BrandIntro onOpenBookingModal={() => handleOpenBookingModal()} />
-
-        {/* 14. Comprehensive Site Visit Reservation Section */}
-        <section id="visit" className="py-24 relative bg-[#F7F4EE] border-t border-[#DDD4C5]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SiteVisitForm onOpenBookingModal={handleOpenBookingModal} />
-          </div>
-        </section>
-
-        {/* 15. Final Lead Call-To-Action Banner */}
-        <LeadCTA
-          onOpenBookingModal={handleOpenBookingModal}
-          onOpenBrochureModal={() => handleOpenBookingModal(undefined, true)}
-        />
-      </main>
-
-      {/* 16. Comprehensive Corporate Footer */}
-      <Footer
-        onOpenLoginModal={() => setIsLoginModalOpen(true)}
-        onOpenBookingModal={() => handleOpenBookingModal()}
-      />
-
-      {/* Floating Instant Communication Widgets */}
-      <WhatsAppButton />
-      <QuickCallBar onOpenBookingModal={() => handleOpenBookingModal()} />
-
-      {/* Interactive Modals */}
-      <LeadModal
-        isOpen={isBookingModalOpen}
-        onClose={() => setIsBookingModalOpen(false)}
-        initialProject={bookingModalProject}
-        isBrochureMode={isBrochureModal}
-      />
-
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
-
-      {selectedProjectForModal && (
-        <ProjectDetailsModal
-          project={selectedProjectForModal}
-          onClose={() => setSelectedProjectForModal(null)}
-          onBookSiteVisit={(projectName) => handleOpenBookingModal(projectName)}
-        />
-      )}
-    </div>
+        {selectedProjectForModal && (
+          <ProjectDetailsModal
+            project={selectedProjectForModal}
+            onClose={() => setSelectedProjectForModal(null)}
+            onBookSiteVisit={(projectName) => handleOpenBookingModal(projectName)}
+          />
+        )}
+      </div>
+    </BrowserRouter>
   );
 }

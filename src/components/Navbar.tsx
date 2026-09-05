@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, CalendarCheck, User, ChevronRight } from 'lucide-react';
 
 interface NavbarProps {
@@ -9,79 +10,49 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      const sections = [
-        'home',
-        'projects',
-        'layout',
-        'brochure',
-        'investment',
-        'amenities',
-        'location',
-        'gallery',
-        'why-us',
-        'about',
-        'visit',
-      ];
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Layout', href: '#layout' },
-    { name: 'Brochure', href: '#brochure' },
-    { name: 'Pricing', href: '#investment' },
-    { name: 'Amenities', href: '#amenities' },
-    { name: 'Location', href: '#location' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Why RGV', href: '#why-us' },
-    { name: 'About', href: '#about' },
-  ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  // Close mobile menu whenever route changes
+  useEffect(() => {
     setIsMobileMenuOpen(false);
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  }, [location.pathname]);
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Layout', href: '/layout' },
+    { name: 'Brochure', href: '/brochure' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Amenities', href: '/amenities' },
+    { name: 'Location', href: '/location' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Why RGV', href: '/why-rgv' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+  ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#F7F4EE]/95 backdrop-blur-md border-b border-[#DDD4C5] py-3 shadow-sm'
-          : 'bg-[#F7F4EE]/90 backdrop-blur-sm border-b border-[#DDD4C5]/60 py-4 sm:py-5'
+          ? 'bg-[#F7F4EE]/95 backdrop-blur-md border-b border-[#DDD4C5] py-2.5 shadow-sm'
+          : 'bg-[#F7F4EE]/90 backdrop-blur-sm border-b border-[#DDD4C5]/60 py-3.5 sm:py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Logo with Official Uploaded Emblem */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
+          <Link
+            to="/"
             className="flex items-center gap-2.5 sm:gap-3 group text-left shrink-0"
             id="nav-brand-logo"
           >
@@ -99,19 +70,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
                 Sri Raghavendra Swamy Developers
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-5">
+          <nav className="hidden 2xl:flex items-center gap-4">
             {navLinks.map((link) => {
-              const targetId = link.href.replace('#', '');
-              const isActive = activeSection === targetId;
+              const isActive = location.pathname === link.href;
               return (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-xs font-semibold tracking-wider uppercase transition-colors relative py-1 ${
+                  to={link.href}
+                  className={`text-[11px] font-semibold tracking-wider uppercase transition-colors relative py-1 ${
                     isActive ? 'text-[#B89452] font-bold' : 'text-[#25231F]/80 hover:text-[#B89452]'
                   }`}
                 >
@@ -119,37 +88,67 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89452]" />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
 
-          {/* Medium Screen Compact Navigation */}
-          <nav className="hidden lg:flex xl:hidden items-center gap-3">
-            {navLinks.slice(0, 6).map((link) => {
-              const targetId = link.href.replace('#', '');
-              const isActive = activeSection === targetId;
+          {/* Medium/Large Screen Navigation */}
+          <nav className="hidden xl:flex 2xl:hidden items-center gap-3">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href;
               return (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-[11px] font-semibold tracking-wider uppercase transition-colors ${
-                    isActive ? 'text-[#B89452] font-bold' : 'text-[#25231F]/70 hover:text-[#B89452]'
+                  to={link.href}
+                  className={`text-[10.5px] font-semibold tracking-wider uppercase transition-colors relative py-1 ${
+                    isActive ? 'text-[#B89452] font-bold' : 'text-[#25231F]/80 hover:text-[#B89452]'
                   }`}
                 >
                   {link.name}
-                </a>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89452]" />
+                  )}
+                </Link>
               );
             })}
           </nav>
 
+          {/* Compact Tablet Navigation */}
+          <nav className="hidden lg:flex xl:hidden items-center gap-2.5">
+            {navLinks.slice(0, 6).map((link) => {
+              const isActive = location.pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={`text-[10px] font-semibold tracking-wider uppercase transition-colors relative py-1 ${
+                    isActive ? 'text-[#B89452] font-bold' : 'text-[#25231F]/80 hover:text-[#B89452]'
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B89452]" />
+                  )}
+                </Link>
+              );
+            })}
+            <Link
+              to="/contact"
+              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors relative py-1 ${
+                location.pathname === '/contact' ? 'text-[#B89452] font-bold' : 'text-[#25231F]/80 hover:text-[#B89452]'
+              }`}
+            >
+              Contact
+            </Link>
+          </nav>
+
           {/* Desktop Action CTAs */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             {/* Direct Phone Link */}
             <a
               href="tel:7624997854"
-              className="flex items-center gap-1.5 text-xs font-semibold text-[#25231F] hover:text-[#B89452] px-3 py-2 border border-[#DDD4C5] hover:border-[#B89452] bg-white transition-all"
+              className="flex items-center gap-1.5 text-xs font-semibold text-[#25231F] hover:text-[#B89452] px-2.5 py-2 border border-[#DDD4C5] hover:border-[#B89452] bg-white transition-all"
               id="nav-call-btn"
             >
               <Phone className="w-3.5 h-3.5 text-[#B89452]" />
@@ -160,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
             {onOpenLoginModal && (
               <button
                 onClick={onOpenLoginModal}
-                className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-[#6F6A61] hover:text-[#B89452] px-2.5 py-2 transition-colors cursor-pointer"
+                className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-[#6F6A61] hover:text-[#B89452] px-2 py-2 transition-colors cursor-pointer"
                 title="Member Portal"
               >
                 <User className="w-3.5 h-3.5 text-[#6F6A61]" />
@@ -171,11 +170,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
             {/* Primary CTA */}
             <button
               onClick={() => onOpenBookingModal()}
-              className="bg-[#B89452] hover:bg-[#D6BD82] text-white px-4 py-2.5 text-xs font-bold tracking-wider uppercase flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+              className="bg-[#B89452] hover:bg-[#D6BD82] text-white px-3.5 py-2 text-xs font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
               id="nav-book-visit-btn"
             >
               <CalendarCheck className="w-3.5 h-3.5 text-white" />
-              <span>Book Site Visit</span>
+              <span>Book Visit</span>
             </button>
           </div>
 
@@ -209,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-0 top-full bg-white border-b border-[#DDD4C5] shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <div className="max-w-7xl mx-auto px-5 py-6 space-y-4 max-h-[85vh] overflow-y-auto">
+          <div className="max-w-7xl mx-auto px-5 py-5 space-y-3 max-h-[85vh] overflow-y-auto">
             {/* Mobile Header Branding */}
             <div className="flex items-center gap-3 pb-3 border-b border-[#DDD4C5]">
               <img
@@ -228,19 +227,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onOpenLoginM
               </div>
             </div>
 
-            {/* Mobile Nav Links */}
+            {/* Mobile Nav Links - All Separate Pages */}
             <div className="grid grid-cols-1 divide-y divide-[#DDD4C5]/50">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="py-3 px-2 flex items-center justify-between text-sm font-semibold tracking-wide uppercase text-[#25231F]/85 hover:text-[#B89452] transition-colors"
-                >
-                  <span>{link.name}</span>
-                  <ChevronRight className="w-4 h-4 text-[#6F6A61]/40" />
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.href;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`py-2.5 px-2 flex items-center justify-between text-sm font-semibold tracking-wide uppercase transition-colors ${
+                      isActive ? 'text-[#B89452] font-bold bg-[#F7F4EE]' : 'text-[#25231F]/85 hover:text-[#B89452]'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronRight className="w-4 h-4 text-[#6F6A61]/40" />
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Mobile Action Buttons */}
