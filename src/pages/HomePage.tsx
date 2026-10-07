@@ -10,11 +10,13 @@ import { CalendarCheck, ArrowRight, Compass, ShieldCheck, MapPin } from 'lucide-
 interface HomePageProps {
   onOpenBookingModal: (projectName?: string) => void;
   onViewProjectDetails: (project: Project) => void;
+  onReplayIntro?: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
   onOpenBookingModal,
   onViewProjectDetails,
+  onReplayIntro,
 }) => {
   const navigate = useNavigate();
 

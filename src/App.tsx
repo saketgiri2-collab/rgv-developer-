@@ -9,6 +9,8 @@ import { QuickCallBar } from './components/QuickCallBar';
 import { LeadModal } from './components/LeadModal';
 import { LoginModal } from './components/LoginModal';
 import { ProjectDetailsModal } from './components/ProjectDetailsModal';
+import { CinematicIntro } from './components/CinematicIntro';
+import { RotatingLogoWatermark } from './components/RotatingLogoWatermark';
 
 // Dedicated Page Views
 import { HomePage } from './pages/HomePage';
@@ -24,6 +26,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingModalProject, setBookingModalProject] = useState<string | undefined>(undefined);
   const [isBrochureModal, setIsBrochureModal] = useState(false);
@@ -42,9 +45,21 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white flex flex-col justify-between">
+      {/* Cinematic 2-3s Opening Experience */}
+      {showIntro && (
+        <CinematicIntro onComplete={() => setShowIntro(false)} />
+      )}
+
+      <div
+        className={`min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white flex flex-col justify-between transition-all duration-700 ease-out ${
+          showIntro ? 'opacity-0 scale-[0.985] blur-[3px]' : 'opacity-100 scale-100 blur-0'
+        }`}
+      >
         {/* Scroll To Top on Route Change */}
         <ScrollToTop />
+
+        {/* Persistent Rotating Original RGV Logo Background Watermark */}
+        <RotatingLogoWatermark />
 
         {/* Global Navigation Bar */}
         <Navbar
@@ -62,6 +77,7 @@ export default function App() {
                 <HomePage
                   onOpenBookingModal={handleOpenBookingModal}
                   onViewProjectDetails={handleViewProjectDetails}
+                  onReplayIntro={() => setShowIntro(true)}
                 />
               }
             />
@@ -135,6 +151,7 @@ export default function App() {
         <Footer
           onOpenLoginModal={() => setIsLoginModalOpen(true)}
           onOpenBookingModal={() => handleOpenBookingModal()}
+          onReplayIntro={() => setShowIntro(true)}
         />
 
         {/* Floating Instant Communication Widgets */}

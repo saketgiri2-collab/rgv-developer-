@@ -132,3 +132,463 @@
 .whatsapp-pulse {
   animation: goldPulse 2.5s infinite;
 }
+
+/* ==========================================================================
+   Cinematic Intro & Luxury Real Estate Animations
+   ========================================================================== */
+
+@keyframes logo3dReveal {
+  0% {
+    transform: perspective(1000px) rotateY(-360deg) scale(0.4);
+    filter: blur(10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.intro-logo-3d-spin {
+  animation: logo3dReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-140%) skewX(-25deg);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(220%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.intro-shimmer-sweep {
+  animation: shimmerSweep 1.8s ease-in-out 0.4s infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 24s linear infinite;
+}
+
+@keyframes progressSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress {
+  animation: progressSweep 1.8s ease-in-out infinite;
+}
+
+/* Particles in Intro Screen */
+.intro-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #D8C08A;
+  box-shadow: 0 0 8px #C8A96B;
+  opacity: 0.6;
+}
+
+.p-tl {
+  top: 15%;
+  left: 12%;
+  animation: floatParticle 4s ease-in-out infinite;
+}
+
+.p-tr {
+  top: 20%;
+  right: 14%;
+  animation: floatParticle 5s ease-in-out 1s infinite;
+}
+
+.p-bl {
+  bottom: 22%;
+  left: 18%;
+  animation: floatParticle 4.5s ease-in-out 0.5s infinite;
+}
+
+.p-br {
+  bottom: 18%;
+  right: 16%;
+  animation: floatParticle 5.5s ease-in-out 1.5s infinite;
+}
+
+.p-c1 {
+  top: 45%;
+  left: 28%;
+  width: 3px;
+  height: 3px;
+  animation: floatParticle 3.5s ease-in-out 0.8s infinite;
+}
+
+.p-c2 {
+  top: 42%;
+  right: 26%;
+  width: 3px;
+  height: 3px;
+  animation: floatParticle 4.2s ease-in-out 1.2s infinite;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(12px, -18px);
+    opacity: 0.85;
+  }
+}
+
+/* Micro-Animation for Logo in Hero (After Intro is Complete) */
+@keyframes heroLogoFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes heroLogoPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(200, 169, 107, 0.2), inset 0 0 15px rgba(200, 169, 107, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(200, 169, 107, 0.4), inset 0 0 20px rgba(216, 192, 138, 0.2);
+  }
+}
+
+.hero-logo-micro {
+  animation: heroLogoFloat 4.5s ease-in-out infinite, heroLogoPulse 4s ease-in-out infinite;
+}
+
+@keyframes periodicSheen {
+  0%, 80% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.hero-sheen-sweep {
+  animation: periodicSheen 6s ease-in-out infinite;
+}
+
+/* Line-by-Line Headline Stagger Animations */
+@keyframes headlineLine1 {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+    letter-spacing: -0.04em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes headlineLine2 {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    letter-spacing: -0.03em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0em;
+  }
+}
+
+.hero-line-1 {
+  animation: headlineLine1 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.hero-line-2 {
+  animation: headlineLine2 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+/* Drone Tour Ken Burns Camera Animations */
+@keyframes kbAerial {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes kbRoad {
+  0% {
+    transform: scale(1.02) translate3d(0, 1.5%, 0);
+  }
+  100% {
+    transform: scale(1.09) translate3d(0, -2%, 0);
+  }
+}
+
+@keyframes kbPlots {
+  0% {
+    transform: scale(1.0) translate3d(-1%, 0, 0);
+  }
+  100% {
+    transform: scale(1.07) translate3d(1.5%, -1%, 0);
+  }
+}
+
+@keyframes kbPark {
+  0% {
+    transform: scale(1.01) translate3d(1.2%, 0.5%, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes kbGate {
+  0% {
+    transform: scale(1.0) translate3d(0, 1%, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(0, -1.8%, 0);
+  }
+}
+
+@keyframes kbVilla {
+  0% {
+    transform: scale(1.02) translate3d(-1%, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(1%, -1%, 0);
+  }
+}
+
+@keyframes kbSunset {
+  0% {
+    transform: scale(1.07) translate3d(0, -1.5%, 0);
+  }
+  100% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+}
+
+.tour-ken-burns-aerial {
+  animation: kbAerial 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-road {
+  animation: kbRoad 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-plots {
+  animation: kbPlots 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-park {
+  animation: kbPark 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-gate {
+  animation: kbGate 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-villa {
+  animation: kbVilla 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.tour-ken-burns-sunset {
+  animation: kbSunset 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Plotted Land Drone Tour Animations */
+@keyframes kbPlotWide {
+  0% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.07) translate3d(-1%, -1.2%, 0);
+  }
+}
+
+@keyframes kbPlotClose {
+  0% {
+    transform: scale(1.02) translate3d(-1%, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(1.5%, -1%, 0);
+  }
+}
+
+@keyframes kbPlotRoad {
+  0% {
+    transform: scale(1.01) translate3d(0, 1.5%, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(0, -2%, 0);
+  }
+}
+
+@keyframes kbPlotDiagonal {
+  0% {
+    transform: scale(1.01) translate3d(-1.5%, 1%, 0);
+  }
+  100% {
+    transform: scale(1.07) translate3d(1.5%, -1%, 0);
+  }
+}
+
+@keyframes kbPlotRise {
+  0% {
+    transform: scale(1.07) translate3d(0, -1.5%, 0);
+  }
+  100% {
+    transform: scale(1.0) translate3d(0, 0, 0);
+  }
+}
+
+.plot-ken-burns-wide,
+.plot-drone-scene-1 {
+  animation: kbPlotWide 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.plot-ken-burns-close,
+.plot-drone-scene-2 {
+  animation: kbPlotClose 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.plot-ken-burns-road,
+.plot-drone-scene-3 {
+  animation: kbPlotRoad 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.plot-ken-burns-diagonal,
+.plot-drone-scene-4 {
+  animation: kbPlotDiagonal 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.plot-ken-burns-rise,
+.plot-drone-scene-5 {
+  animation: kbPlotRise 8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    letter-spacing: -0.03em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes heroSlideUpGold {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    letter-spacing: -0.02em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0em;
+  }
+}
+
+/* ==========================================================================
+   Continuous Rotating Original RGV Logo Background Watermark
+   ========================================================================== */
+
+@keyframes rgvLogoRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.rgv-logo-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rgvLogoRotate 25s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+}
+
+/* Reduced Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+  .intro-logo-3d-spin,
+  .intro-shimmer-sweep,
+  .animate-spin-slow,
+  .animate-progress,
+  .intro-particle,
+  .hero-logo-micro,
+  .hero-sheen-sweep,
+  .hero-line-1,
+  .hero-line-2,
+  .tour-ken-burns-aerial,
+  .tour-ken-burns-road,
+  .tour-ken-burns-plots,
+  .tour-ken-burns-park,
+  .tour-ken-burns-gate,
+  .tour-ken-burns-villa,
+  .tour-ken-burns-sunset,
+  .plot-ken-burns-wide,
+  .plot-ken-burns-close,
+  .plot-ken-burns-road,
+  .plot-ken-burns-diagonal,
+  .plot-ken-burns-rise {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

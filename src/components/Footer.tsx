@@ -14,9 +14,10 @@ import {
 interface FooterProps {
   onOpenLoginModal?: () => void;
   onOpenBookingModal?: () => void;
+  onReplayIntro?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingModal, onReplayIntro }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -190,6 +191,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
           </div>
 
           <div className="flex items-center gap-5 flex-wrap">
+            {onReplayIntro && (
+              <button
+                onClick={onReplayIntro}
+                className="hover:text-[#B89452] text-[#6F6A61] cursor-pointer flex items-center gap-1"
+                title="Play Opening Cinematic Again"
+              >
+                <span>Replay Intro</span>
+              </button>
+            )}
             {onOpenLoginModal && (
               <button 
                 onClick={onOpenLoginModal} 
