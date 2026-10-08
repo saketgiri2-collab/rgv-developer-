@@ -564,6 +564,207 @@
   will-change: transform;
 }
 
+/* ==========================================================================
+   Continuous Cinematic Drone Camera & Township Motion Animations
+   ========================================================================== */
+
+/* Reference Drone Slow Flight: Matches uploaded screenshot perspective
+   Slow forward glide + slight upward elevation, then gentle pull back to reveal layout */
+@keyframes referenceDroneSlowFlight {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  28% {
+    transform: scale(1.06) translate3d(-14px, -10px, 0);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-20px, -16px, 0);
+  }
+  75% {
+    transform: scale(1.04) translate3d(8px, -6px, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+}
+
+.animate-reference-drone-flight {
+  animation: referenceDroneSlowFlight 34s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Scene 1: Close Plot View — Low altitude forward glide between plots */
+@keyframes droneScene1ClosePlot {
+  0% {
+    transform: scale(1.03) translate3d(0, 10px, 0);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-10px, -4px, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(-18px, -16px, 0);
+  }
+}
+
+.animate-drone-scene-1 {
+  animation: droneScene1ClosePlot 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Scene 2: Slow Pull Back — Gradual rise and pull back revealing plot grid */
+@keyframes droneScene2PullBack {
+  0% {
+    transform: scale(1.12) translate3d(-10px, -12px, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(4px, 2px, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(14px, 12px, 0);
+  }
+}
+
+.animate-drone-scene-2 {
+  animation: droneScene2PullBack 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Scene 3: Amenities Reveal — Sweeping glide over landscaped park & walking tracks */
+@keyframes droneScene3Amenities {
+  0% {
+    transform: scale(1.04) translate3d(14px, 0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-6px, -10px, 0);
+  }
+  100% {
+    transform: scale(1.11) translate3d(-18px, -14px, 0);
+  }
+}
+
+.animate-drone-scene-3 {
+  animation: droneScene3Amenities 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Scene 4: Wider Development — Steady ascent revealing multiple rows of plots & villas */
+@keyframes droneScene4WiderAscent {
+  0% {
+    transform: scale(1.10) translate3d(0, -8px, 0);
+  }
+  50% {
+    transform: scale(1.05) translate3d(8px, 4px, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(16px, 14px, 0);
+  }
+}
+
+.animate-drone-scene-4 {
+  animation: droneScene4WiderAscent 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Scene 5: Premium Final View — High-altitude floating vista over full plotted township */
+@keyframes droneScene5FullTownship {
+  0% {
+    transform: scale(1.02) translate3d(-10px, -4px, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(6px, -10px, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(16px, -16px, 0);
+  }
+}
+
+.animate-drone-scene-5 {
+  animation: droneScene5FullTownship 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes droneCameraGlideMotion {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  35% {
+    transform: scale(1.06) translate3d(-14px, -10px, 0);
+  }
+  70% {
+    transform: scale(1.07) translate3d(-8px, -18px, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+}
+
+.drone-camera-glide {
+  animation: droneCameraGlideMotion 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes realDroneFlyover {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-20px, -14px, 0);
+  }
+  100% {
+    transform: scale(1.03) translate3d(14px, -8px, 0);
+  }
+}
+
+.animate-drone-flyover {
+  animation: realDroneFlyover 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes carDriveSouth {
+  0% {
+    transform: translate(0, -80px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 260px);
+    opacity: 0;
+  }
+}
+
+.animate-car-drive-south {
+  animation: carDriveSouth 14s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes carDriveCurve {
+  0% {
+    transform: translate(-100px, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(320px, 80px);
+    opacity: 0;
+  }
+}
+
+.animate-car-drive-curve {
+  animation: carDriveCurve 18s linear infinite;
+  animation-delay: 3s;
+  will-change: transform, opacity;
+}
+
 /* Reduced Motion Overrides */
 @media (prefers-reduced-motion: reduce) {
   .intro-logo-3d-spin,
@@ -586,7 +787,15 @@
   .plot-ken-burns-close,
   .plot-ken-burns-road,
   .plot-ken-burns-diagonal,
-  .plot-ken-burns-rise {
+  .plot-ken-burns-rise,
+  .animate-drone-scene-1,
+  .animate-drone-scene-2,
+  .animate-drone-scene-3,
+  .animate-drone-scene-4,
+  .animate-drone-scene-5,
+  .animate-reference-drone-flight,
+  .animate-drone-flyover,
+  .drone-camera-glide {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;

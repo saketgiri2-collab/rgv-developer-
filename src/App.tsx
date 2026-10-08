@@ -26,7 +26,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 
 export default function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingModalProject, setBookingModalProject] = useState<string | undefined>(undefined);
   const [isBrochureModal, setIsBrochureModal] = useState(false);
@@ -45,15 +45,13 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {/* Cinematic 2-3s Opening Experience */}
+      {/* Cinematic 2-3s Opening Experience (can be replayed via footer) */}
       {showIntro && (
         <CinematicIntro onComplete={() => setShowIntro(false)} />
       )}
 
       <div
-        className={`min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white flex flex-col justify-between transition-all duration-700 ease-out ${
-          showIntro ? 'opacity-0 scale-[0.985] blur-[3px]' : 'opacity-100 scale-100 blur-0'
-        }`}
+        className="min-h-screen bg-[#F7F4EE] text-[#25231F] selection:bg-[#B89452] selection:text-white flex flex-col justify-between transition-opacity duration-300 opacity-100 scale-100 blur-0"
       >
         {/* Scroll To Top on Route Change */}
         <ScrollToTop />
