@@ -14,12 +14,14 @@ export const siteConfig: SiteConfig = {
     email: 'NewcityNorth62@gmail.com',
     salesEmail: 'NewcityNorth62@gmail.com',
     address: {
-      line1: 'No D4-377, Karnataka Housing Board Colony',
-      line2: '407 SFS, 4th Stage, Yelahanka New Town',
+      line1: '375, Attur Layout',
+      line2: 'Yelahanka New Town',
       city: 'Bengaluru',
       state: 'Karnataka',
       pincode: '560064',
       country: 'India',
+      full: '375, Attur Layout, Yelahanka New Town, Bengaluru, Karnataka 560064, India.',
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=375%2C+Attur+Layout%2C+Yelahanka+New+Town%2C+Bengaluru%2C+Karnataka+560064',
     },
     workingHours: 'Mon – Sun: 9:00 AM – 7:30 PM (Site Visits 7 Days a Week)',
     social: {

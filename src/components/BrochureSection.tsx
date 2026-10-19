@@ -87,7 +87,7 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({ onOpenBookingM
         'New City at Gejjagadahalli / Marasandra',
         'Direct Access from Yelahanka New Town (SH-9 / SH-39 / SH-74)',
         'Proximity to Hesaraghatta Lake, Avalahalli Forest & Rajanukunte Station',
-        'Official Office: D4-377, KHB Colony, Yelahanka New Town',
+        'Official Office: 375, Attur Layout, Yelahanka New Town',
       ],
     },
   ];
@@ -504,9 +504,15 @@ export const BrochureSection: React.FC<BrochureSectionProps> = ({ onOpenBookingM
                   {/* Office Address Callout Box */}
                   <div className="p-4 bg-amber-50 border-2 border-amber-400 rounded text-xs text-slate-800">
                     <div className="font-bold text-amber-950 uppercase text-xs mb-1">Official Office Address:</div>
-                    <p className="font-medium">
-                      No D4-377, Karnataka Housing Board Colony, 407 SFS, 4th Stage, 2nd Floor, Yelahanka New Town, Bengaluru - 560064
-                    </p>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=375%2C+Attur+Layout%2C+Yelahanka+New+Town%2C+Bengaluru%2C+Karnataka+560064"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium hover:text-amber-900 transition-colors block"
+                      title="View Official Office on Google Maps"
+                    >
+                      375, Attur Layout, Yelahanka New Town, Bengaluru, Karnataka 560064, India.
+                    </a>
                   </div>
                 </div>
               )}

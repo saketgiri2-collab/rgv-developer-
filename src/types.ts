@@ -131,6 +131,8 @@ export interface SiteConfig {
       state: string;
       pincode: string;
       country: string;
+      full?: string;
+      googleMapsUrl?: string;
     };
     workingHours: string;
     social: {

@@ -152,9 +152,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLoginModal, onOpenBookingM
             <div className="space-y-2.5 text-xs text-[#6F6A61]">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#B89452] shrink-0 mt-0.5" />
-                <span>
-                  No D4-377, Karnataka Housing Board Colony, 407 SFS, 4th Stage, Yelahanka New Town, Bengaluru - 560064
-                </span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=375%2C+Attur+Layout%2C+Yelahanka+New+Town%2C+Bengaluru%2C+Karnataka+560064"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#B89452] transition-colors leading-relaxed"
+                  title="View Corporate Office on Google Maps"
+                >
+                  375, Attur Layout, Yelahanka New Town, Bengaluru, Karnataka 560064, India.
+                </a>
               </div>
 
               <div className="flex items-center gap-2.5">

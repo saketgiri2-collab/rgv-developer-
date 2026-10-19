@@ -60,9 +60,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenBookingModal }) 
                       <span className="text-xs font-bold uppercase tracking-wider text-[#25231F] block mb-0.5">
                         Corporate Headquarters
                       </span>
-                      <p className="leading-relaxed">
-                        No D4-377, Karnataka Housing Board Colony, 407 SFS, 4th Stage, Yelahanka New Town, Bengaluru - 560064
-                      </p>
+                      <a
+                        href="https://www.google.com/maps/search/?api=1&query=375%2C+Attur+Layout%2C+Yelahanka+New+Town%2C+Bengaluru%2C+Karnataka+560064"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="leading-relaxed hover:text-[#B89452] transition-colors block"
+                        title="View Corporate Headquarters on Google Maps"
+                      >
+                        375, Attur Layout, Yelahanka New Town, Bengaluru, Karnataka 560064, India.
+                      </a>
                     </div>
                   </div>
 
